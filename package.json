@@ -1,0 +1,14 @@
+{
+  "name": "dashdown",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/maxjoehnk/dashdown.git",
+  "author": "Max Jöhnk <maxjoehnk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash.map": "^4.6.0",
+    "node-dash-button": "^0.6.1",
+    "node-hue-api": "^2.4.2",
+    "yamaha-nodejs": "^0.7.8"
+  }
+}
