@@ -4,6 +4,7 @@ const { readFile, writeFile } = require('fs');
 const { join } = require('path');
 const { HueApi } = require('node-hue-api');
 const map = require('lodash.map');
+const { exec } = require('child_process');
 
 let config = {};
 
@@ -39,6 +40,13 @@ const onDashButton = () => {
             .then(res => res.lights)
             .then(lights => Promise.all(map(lights, ({ id }) => hue.setLightState(id, { on: false }))))
             .catch(err => console.error(err));
+    }
+    if (config.cec) {
+        exec(`echo "standby ${config.cec}" | cec-client -s`, (err, stdout, stderr) => {
+            if (err) {
+                console.error(err);
+            }
+    	});
     }
 };
 
