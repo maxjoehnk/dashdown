@@ -15,6 +15,7 @@
     "eslint": "^4.5.0"
   },
   "scripts": {
-    "lint": "eslint src/** test/**"
+    "lint": "eslint src/** test/**",
+    "start": "node src/index.js"
   }
 }
