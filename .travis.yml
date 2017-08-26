@@ -1,6 +1,10 @@
 language: node_js
 node_js:
     - "8"
+addons:
+  apt:
+    packages:
+      - libpcap-dev
 before_install:
 - npm install -g npm@5
 - npm install -g greenkeeper-lockfile@1
