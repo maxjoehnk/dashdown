@@ -39,6 +39,17 @@ __5. Connect Hue Bridge (optional)__
 
 When you wanna connect to a hue bridge press the connect button on your bridge before starting ```dashdown```. When the message ```Setup Complete``` appears the hue.username field of your config should be populated.
 
+__6. Start ```dashdown```__
+
+```bash
+npm start
+```
+This may fail with a message like ```Error: (cannot open BPF device) /dev/bpf0: Permission denied```.
+To solve this run dashdown as an administrator
+```bash
+sudo npm start
+```
+
 ## Configuration
 ```json
 {
