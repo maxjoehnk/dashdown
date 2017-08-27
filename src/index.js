@@ -20,10 +20,10 @@ const setupIntegration = (name, integration) => async({ config, services = [] })
     if (integration.isConfigured(config)) {
         try {
             const instance = await integration.setup(config);
-            services.push = {
+            services.push({
                 integration,
                 config: instance
-            };
+            });
         }catch (err) {
             console.error(`Error setting up ${name} integration`);
         }
