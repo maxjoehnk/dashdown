@@ -7,7 +7,7 @@ const sinonChai = require('sinon-chai');
 use(asPromised);
 use(sinonChai);
 
-const requirePath = '../src/config';
+const requirePath = '../lib/config';
 
 describe('config', function() {
     let fsMock;

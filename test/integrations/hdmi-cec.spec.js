@@ -7,7 +7,7 @@ const sinonChai = require('sinon-chai');
 use(asPromised);
 use(sinonChai);
 
-const requirePath = '../../src/integrations/hdmi-cec';
+const requirePath = '../../lib/integrations/hdmi-cec';
 
 describe('integrations/hdmi-cec', function() {
     let childProcessMock;

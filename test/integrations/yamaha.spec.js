@@ -7,7 +7,7 @@ const sinonChai = require('sinon-chai');
 use(asPromised);
 use(sinonChai);
 
-const requirePath = '../../src/integrations/yamaha';
+const requirePath = '../../lib/integrations/yamaha';
 
 describe('integrations/yamaha', function() {
     let integration;
@@ -62,14 +62,14 @@ describe('integrations/yamaha', function() {
             expect(integration.shutdown).to.be.an.instanceof(Function);
         });
 
-        it('should resolve when avr.powerOff resolves', async function() {
+        it('should resolve when avr.powerOff resolves', function() {
             avrInstance.powerOff.resolves();
             const result = integration.shutdown(avrInstance);
             expect(result).to.eventually.be.fulfilled;
             expect(avrInstance.powerOff).to.have.been.called;
         });
 
-        it('should reject when avr.powerOff rejects', async function() {
+        it('should reject when avr.powerOff rejects', function() {
             avrInstance.powerOff.rejects(new Error());
             const result = integration.shutdown(avrInstance);
             expect(result).to.eventually.have.been.rejectedWith(Error);

@@ -7,7 +7,7 @@ const sinonChai = require('sinon-chai');
 use(asPromised);
 use(sinonChai);
 
-const requirePath = '../../src/integrations/philips-hue';
+const requirePath = '../../lib/integrations/philips-hue';
 
 describe('integrations/philips-hue', function() {
     let hueMock;
@@ -84,7 +84,7 @@ describe('integrations/philips-hue', function() {
             expect(hueInstance.lights).to.have.been.called;
         });
 
-        it('should call setLightState for each light', async function() {
+        it('should call setLightState for each light', function() {
             const lights = [{
                 id: 1
             }, {
@@ -92,9 +92,11 @@ describe('integrations/philips-hue', function() {
             }];
             hueInstance.lights.resolves({ lights });
             hueInstance.setLightState.resolves();
-            await integration.shutdown(hueInstance);
-            expect(hueInstance.setLightState).to.have.been.calledWith(1, { on: false });
-            expect(hueInstance.setLightState).to.have.been.calledWith(2, { on: false });
+            return integration.shutdown(hueInstance)
+                .then(() => {
+                    expect(hueInstance.setLightState).to.have.been.calledWith(1, { on: false });
+                    expect(hueInstance.setLightState).to.have.been.calledWith(2, { on: false });                            
+                });
         });
     });
 
