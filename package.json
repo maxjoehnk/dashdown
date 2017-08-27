@@ -6,12 +6,13 @@
   "author": "Max Jöhnk <maxjoehnk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "lodash.map": "^4.6.0",
     "node-dash-button": "^0.6.1",
     "node-hue-api": "^2.4.2",
     "yamaha-nodejs": "^0.7.8"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "chai": "^4.1.1",
     "chai-as-promised": "^7.1.1",
     "eslint": "^4.5.0",
@@ -22,7 +23,10 @@
   },
   "scripts": {
     "lint": "eslint src/** test/**",
-    "start": "node src/index.js",
-    "test": "mocha"
+    "start": "node lib/index.js",
+    "test": "mocha --recursive",
+    "transpile": "babel src --out-dir lib",
+    "pretest": "npm run transpile",
+    "prestart": "npm run transpile"
   }
 }
