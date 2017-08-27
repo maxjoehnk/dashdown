@@ -17,7 +17,7 @@ const onDashButton = targets => () => {
 };
 
 const setupIntegration = (name, integration) => async({ config, services = [] }) => {
-    if (integration.isConfigured()) {
+    if (integration.isConfigured(config)) {
         try {
             const instance = await integration.setup(config);
             services.push = {
