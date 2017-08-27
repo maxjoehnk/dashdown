@@ -40,7 +40,7 @@ const setup = () => {
             if (!config.dash) {
                 throw 'Please add the mac address of your dash button';
             }
-            return config;
+            return { config };
         })
         .then(setupIntegration('yamaha', yamaha))
         .then(setupIntegration('hue', hue))
