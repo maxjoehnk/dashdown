@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "eslint src/** test/**",
-    "start": "node src/index.js",
+    "start": "node lib/index.js",
     "test": "mocha --recursive",
     "transpile": "babel src --out-dir lib",
     "pretest": "npm run transpile",
