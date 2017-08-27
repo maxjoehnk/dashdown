@@ -48,8 +48,9 @@ const setup = () => {
         .then(({ config, services }) => {
             dash = DashButton(config.dash, null, null, 'all'); // eslint-disable-line new-cap
             dash.on('detected', onDashButton(services));
+            return config;
         })
-        .then(({ config }) => save(configPath, config))
+        .then(config => save(configPath, config))
         .then(() => console.log('Setup Complete'))
         .catch(err => {
             console.error(err);
