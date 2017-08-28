@@ -28,5 +28,9 @@
     "transpile": "babel src --out-dir lib",
     "pretest": "npm run transpile",
     "prestart": "npm run transpile"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=5"
   }
 }
