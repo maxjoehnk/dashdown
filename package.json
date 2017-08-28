@@ -21,9 +21,10 @@
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0"
   },
+  "bin": "bin/dashdown",
   "scripts": {
-    "lint": "eslint src/** test/**",
-    "start": "node lib/index.js",
+    "lint": "eslint src/** test/** bin/**",
+    "start": "bin/dashdown",
     "test": "mocha --recursive",
     "transpile": "babel src --out-dir lib",
     "pretest": "npm run transpile",

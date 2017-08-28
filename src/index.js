@@ -7,8 +7,6 @@ const yamaha = require('./integrations/yamaha');
 
 const configPath = join(__dirname, '../config.json');
 
-let dash;
-
 const onDashButton = targets => () => {
     targets.forEach(({ integration, config }) =>
         integration.shutdown(config)
@@ -34,11 +32,11 @@ const setupIntegration = (name, integration) => async({ config, services = [] })
     };
 };
 
-const setup = () => {
-    load(configPath)
+const setup = ({ config: path = configPath }) => 
+    load(path)
         .then(config => {
             if (!config.dash) {
-                throw 'Please add the mac address of your dash button';
+                throw new Error('Please add the mac address of your dash button');
             }
             return { config };
         })
@@ -46,16 +44,17 @@ const setup = () => {
         .then(setupIntegration('hue', hue))
         .then(setupIntegration('hdmi-cec', cec))
         .then(({ config, services }) => {
-            dash = DashButton(config.dash, null, null, 'all'); // eslint-disable-line new-cap
+            const dash = DashButton(config.dash, null, null, 'all'); // eslint-disable-line new-cap
             dash.on('detected', onDashButton(services));
             return config;
         })
-        .then(config => save(configPath, config))
-        .then(() => console.log('Setup Complete'))
+        .then(config => save(path, config))
         .catch(err => {
             console.error(err);
             process.exit(1);
         });
-};
 
-setup();
+module.exports = {
+    setup,
+    setupIntegration
+};

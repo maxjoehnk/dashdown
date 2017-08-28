@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const dashdown = require('../lib');
+const yargs = require('yargs');
+const { resolve } = require('path');
+const package = require('../package.json');
+
+yargs
+    .usage('Usage: $0 [--config <path>]')
+    .string('config')
+    .alias('c', 'config')
+    .describe('config', '<path> Path to the config file')
+    .alias('h', 'help')
+    .help()
+    .version(package.version);
+
+const { argv } = yargs;
+
+const options = {};
+
+if (argv.config) {
+    options.config = resolve(__dirname, '..', argv.config);
+}
+
+dashdown
+    .setup(options)
+    .then(() => console.log('Started'))
+    .catch(err => console.error(err));
