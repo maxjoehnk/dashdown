@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "node-dash-button": "^0.6.1",
-    "node-hue-api": "^2.4.2",
+    "node-hue-api": "^2.4.5",
     "yamaha-nodejs": "^0.7.8"
   },
   "devDependencies": {
